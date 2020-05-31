@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">MyGroceryApp</string>
+
+
+    <string-array name="units_array">
+        <item>  </item>
+        <item>boxes</item>
+        <item>bags</item>
+        <item>bottles</item>
+        <item>cans</item>
+        <item>cases</item>
+        <item>containers</item>
+        <item>packages</item>
+        <item>pounds</item>
+    </string-array>
+
+
+    <string-array name="nums_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+
+    </string-array>
+
+
+
+</resources>
