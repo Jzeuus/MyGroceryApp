@@ -72,15 +72,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner1.setAdapter(adapter);
 
-
         spinner2 = (Spinner)findViewById(R.id.units_spinner);
         spinner2.setOnItemSelectedListener(this);
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
                 R.array.units_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner2.setAdapter(adapter2);
-        //spinner.setOnItemClickListener(this);
-
 
     }
 
@@ -117,58 +114,63 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
 
-    public void createList(View v) {
+    public void showInventory(View v) {
+        Intent intent = new Intent(this, inventory_database.class);
+        startActivity(intent);
+    }
+
+    public void getScan(View v){
 
     }
 
 
-    public void openHistory(View v){
-        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-        final int length = arrayNames.size();
-        final String [] toDisplay = new String[length];
-        final boolean[] checkedArray = new boolean[arrayNames.size()];
+    public void deleteItem(View v){
 
-        for(int i=0;i<length;i++) {
-            toDisplay[i] = arrayNames.get(i);
-            checkedArray[i]=false;
-        }
-        //boolean array for selected item
+        if(!arrayNames.isEmpty())
+        {
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+            final int length = arrayNames.size();
+            final String[] toDisplay = new String[length];
+            //boolean array for selected item
+            final boolean[] checkedArray = new boolean[arrayNames.size()];
 
-
-        //final List<String> theList = Arrays.asList(strArray);
-
-        //set alert dialog title
-        builder.setTitle("Choose selection to delete..");
-
-        builder.setMultiChoiceItems(toDisplay, checkedArray, new DialogInterface.OnMultiChoiceClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i, boolean b) {
-                checkedArray[i] = b;
-                Toast.makeText(MainActivity.this, "i=" + i, Toast.LENGTH_LONG).show();
+            for (int i = 0; i < length; i++) {
+                toDisplay[i] = arrayNames.get(i);
+                checkedArray[i] = false;
             }
-        });
 
-        builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int which) {
+            //set alert dialog title
+            builder.setTitle("Choose selection to delete..");
 
-                ArrayList<Integer> indexes = new ArrayList<Integer>();
-                for(int j=0;j<length;j++)
-                    if (checkedArray[j])
-                        indexes.add(j);
-
-                int i = indexes.size()-1;
-                for(; i>=0;i--){
-                    //Toast.makeText(MainActivity.this, "i=" + i, Toast.LENGTH_LONG).show();
-                    int k = indexes.get(i);
-
-                    locationList.remove(k);
-                    arrayNames.remove(k);
-                    arrayQ.remove(k);
-                    arrayU.remove(k);
-
-                    indexes.remove(i);
+            builder.setMultiChoiceItems(toDisplay, checkedArray, new DialogInterface.OnMultiChoiceClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i, boolean b) {
+                    checkedArray[i] = b;
+                    Toast.makeText(MainActivity.this, "i=" + i, Toast.LENGTH_LONG).show();
                 }
+            });
+
+            builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int which) {
+
+                    ArrayList<Integer> indexes = new ArrayList<Integer>();
+                    for (int j = 0; j < length; j++)
+                        if (checkedArray[j])
+                            indexes.add(j);
+
+                    int i = indexes.size() - 1;
+                    for (; i >= 0; i--) {
+                        //Toast.makeText(MainActivity.this, "i=" + i, Toast.LENGTH_LONG).show();
+                        int k = indexes.get(i);
+
+                        locationList.remove(k);
+                        arrayNames.remove(k);
+                        arrayQ.remove(k);
+                        arrayU.remove(k);
+
+                        indexes.remove(i);
+                    }
 
                     ListAdapter adapter = new SimpleAdapter(
                             MainActivity.this, locationList,
@@ -185,26 +187,24 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     editName.setText("");
 
 
-            }
-        });
+                }
+            });
 
-        //set neutral/cancel button
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //do someting here
-            }
-        });
+            //set neutral/cancel button
+            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    //do someting here
+                }
+            });
 
-        AlertDialog dialog = builder.create();
-        //show alert dialog
-        dialog.show();
+            AlertDialog dialog = builder.create();
+            //show alert dialog
+            dialog.show();
 
 
-        //Intent intent = new Intent(this, HistoryDatabase.class);
-        //startActivity(intent);
+        }
     }
-
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -291,8 +291,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         myList.setClickable(true);
         // set the adapter to be displayed in the list view
         myList.setAdapter(adapter);
-        //editName.setText("");
-        //editNum.setText("");
 
     }
 

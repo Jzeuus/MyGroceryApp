@@ -28,7 +28,7 @@
         <item>10</item>
 
     </string-array>
-
+    <string name="title_activity_inventory_database">inventory_database</string>
 
 
 </resources>

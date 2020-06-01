@@ -8,28 +8,41 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
     <Button
-        android:id="@+id/btn_create"
+        android:id="@+id/btn_scan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
-        android:onClick="createList"
+        android:onClick="getScan"
         android:padding="15dp"
-        android:text="Create List"
-        app:layout_constraintStart_toEndOf="@+id/btn_history"
+        android:text="Scan"
+        app:layout_constraintStart_toEndOf="@+id/btn_inventory"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/btn_inventory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="showInventory"
+        android:padding="15dp"
+        android:text="Inventory"
+        app:layout_constraintStart_toEndOf="@+id/btn_delItem"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btn_history"
+        android:id="@+id/btn_delItem"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:clickable="true"
         android:focusable="true"
-        android:onClick="openHistory"
+        android:onClick="deleteItem"
         android:padding="15dp"
-        android:text="History"
+        android:text="Delete Item"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -43,7 +56,7 @@
         android:maxLines="1"
         android:singleLine="true"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_history" />
+        app:layout_constraintTop_toBottomOf="@id/btn_delItem" />
 
     <Button
         android:id="@+id/btn_add"
@@ -57,8 +70,8 @@
         android:padding="0dp"
         android:text="Add"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/edit_name"
-        app:layout_constraintTop_toBottomOf="@+id/btn_create" />
+        app:layout_constraintStart_toEndOf="@id/edit_name"
+        app:layout_constraintTop_toBottomOf="@id/btn_inventory" />
 
     <Spinner
         android:id="@+id/num_spinner"
@@ -86,14 +99,16 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="140dp"
-            android:text="Item:" />
+            android:text="Items:" />
 
         <TextView
             android:id="@+id/textView3"
@@ -113,8 +128,6 @@
 
 
     </RelativeLayout>
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
